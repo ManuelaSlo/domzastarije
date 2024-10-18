@@ -1,0 +1,89 @@
+<div class="container" style="margin-top: 100px">
+  <div class="row mb-5">
+    <div class="col-12">
+      <h1 class="text-center">Uredi korisnika</h1>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-6">
+      <form #hotelForm="ngForm" (ngSubmit)="spremiKorisnika()">
+        <fieldset>
+          <legend>Popunite sve podatke</legend>
+          <div>
+            <label for="ime" class="form-label mt-4">Ime korisnika</label>
+            <input
+              name="ime"
+              [(ngModel)]="korisnik.ime"
+              type="text"
+              class="form-control"
+              id="ime"
+            />
+          </div>
+          <div>
+            <label for="prezime" class="form-label mt-4">Prezime</label>
+            <input
+              name="prezime"
+              [(ngModel)]="korisnik.prezime"
+              type="text"
+              class="form-control"
+              id="prezime"
+            />
+          </div>
+          <div>
+            <label for="oib" class="form-label mt-4">OIB</label>
+            <input
+              name="oib"
+              [(ngModel)]="korisnik.oib"
+              type="text"
+              class="form-control"
+              id="oib"
+            />
+          </div>
+          <div>
+            <label for="datum" class="form-label mt-4">Datum rođenja</label>
+            <input
+              name="datum"
+              [(ngModel)]="korisnik.datumRodenja"
+              type="date"
+              class="form-control"
+              id="datum"
+            />
+          </div>
+          <div>
+            <label for="njegovatelj" class="form-label mt-4"
+              >Odaberi njegovatelja</label
+            >
+            <select
+              name="njegovatelj"
+              [(ngModel)]="korisnik.njegovateljId"
+              class="form-control"
+              id="njegovatelj"
+            >
+              <option
+                *ngFor="let njegovatelj of njegovatelji"
+                [value]="njegovatelj.id"
+              >
+                {{ njegovatelj.ime }} {{ njegovatelj.prezime }}
+              </option>
+            </select>
+            <p *ngIf="njegovatelji.length == 0" style="color: red">
+              Nema dostupnih njegovatelja
+            </p>
+          </div>
+        </fieldset>
+        <button type="submit" class="btn btn-primary mt-2" style="width: 100%">
+          Ažuriraj
+        </button>
+        <button
+          routerLink="/korisnici"
+          type="button"
+          class="btn btn-danger mt-2"
+          style="width: 100%"
+        >
+          Nazad
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,66 @@
+<div class="container" style="margin-top: 100px">
+  <div class="row mb-5">
+    <div class="col-12">
+      <h1 class="text-center">Korisnici</h1>
+      <button
+        [routerLink]="['/korisnik-create']"
+        type="button"
+        class="btn btn-primary"
+        style="width: 100%"
+      >
+        + Dodaj korisnika
+      </button>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Ime</th>
+            <th scope="col">Prezime</th>
+            <th scope="col">OIB</th>
+            <th scope="col">Datum rođenja</th>
+            <th scope="col">Njegovatelj</th>
+            <th scope="col">Uredi</th>
+            <th scope="col">Obriši</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let korisnik of korisnici">
+            <th scope="row">{{ korisnik.id }}</th>
+            <td>{{ korisnik.ime }}</td>
+            <td>{{ korisnik.prezime }}</td>
+            <td>{{ korisnik.oib }}</td>
+            <td>{{ korisnik.datumRodenja }}</td>
+            <td>
+              {{
+                korisnik.njegovatelj!.ime + " " + korisnik.njegovatelj!.prezime
+              }}
+            </td>
+            <td>
+              <button
+                [routerLink]="['/korisnik-update', korisnik.id]"
+                type="button"
+                class="btn btn-primary"
+              >
+                Uredi
+              </button>
+            </td>
+            <td>
+              <button
+                (click)="obrisiKorisnika(korisnik)"
+                type="button"
+                class="btn btn-danger"
+              >
+                Obriši
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
